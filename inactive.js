@@ -20,5 +20,16 @@ const inactiveThirdStage = () => {
 
 // this is the main method that acts like a worker and runs every 1 minute
 setInterval(function(){
-    // please write your code here
+    var currentTime = new Date();
+    var diffMs = (user.lastActivity - currentTime)
+    var minutes = Math.floor((diffMs/1000)/60) % 6
+
+    if(minutes > 4){
+    	inactiveThirdStage()
+    } else if(minutes > 2)  {
+    	inactiveSecondStage()
+    } else {
+    	inactiveFirstStage()
+    }
+
 }, 1000);
